@@ -123,8 +123,7 @@ def makeSVG(data):
 def catch_all(path):
     data = nowPlaying()
 
-    if path == "/playing":
-        return data or recentlyPlayed()
+    print(path)
 
     svg = makeSVG(data)
 
