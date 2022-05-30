@@ -129,5 +129,19 @@ def catch_all(path):
 
     return resp
 
+@app.route("/playing")
+def text():
+    
+    data = nowPlaying()
+
+    if not data:
+        data = recentlyPlayed()
+
+    resp = Respons(data)
+    resp.headers["Cache-Control"] = "s-maxagy1ye=1"
+
+    return resp
+
+
 if __name__ == "__main__":
     app.run(debug=True)
