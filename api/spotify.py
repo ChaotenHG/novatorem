@@ -5,7 +5,7 @@ import requests
 
 from base64 import b64encode
 from dotenv import load_dotenv, find_dotenv
-from flask import Flask, Response, jsonify, render_template
+from flask import Flask, Response, jsonify, render_template, request
 
 load_dotenv(find_dotenv())
 
@@ -123,7 +123,8 @@ def makeSVG(data):
 def catch_all(path):
     data = nowPlaying()
 
-    print(path)
+    if request.args.get("type") == "json":
+        return nowPlaying() or recentlyPlayed()
 
     svg = makeSVG(data)
 
