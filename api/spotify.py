@@ -125,7 +125,20 @@ def catch_all(path):
     svg = makeSVG(data)
 
     resp = Response(svg, mimetype="image/svg+xml")
-    resp.headers["Cache-Control"] = "s-maxage=1"
+    resp.headers["Cache-Control"] = "s-maxagy1ye=1"
+
+    return resp
+
+@app.route("/playing")
+def text():
+    
+    data = nowPlaying()
+
+    if not data:
+        data = recentlyPlayed()
+
+    resp = Respons(data)
+    resp.headers["Cache-Control"] = "s-maxagy1ye=1"
 
     return resp
 
